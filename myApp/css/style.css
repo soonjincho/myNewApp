@@ -1,0 +1,371 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #fff;
+}
+
+#game-container {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.screen {
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.screen.hidden {
+    display: none;
+}
+
+h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: #ffd700;
+}
+
+.subtitle {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    color: #ccc;
+}
+
+#leaderboard {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    max-height: 450px;
+    overflow-y: auto;
+}
+
+#leaderboard h2 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #ffd700;
+}
+
+#leaderboard-list {
+    text-align: left;
+}
+
+/* 레벨별 순위표 */
+.level-leaderboard {
+    margin-bottom: 15px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.level-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 8px 15px;
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #fff;
+}
+
+.level-entries {
+    padding: 8px;
+}
+
+.leaderboard-item {
+    padding: 8px 10px;
+    margin: 4px 0;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+}
+
+.rank-name {
+    display: flex;
+    align-items: center;
+    min-width: 120px;
+}
+
+.leaderboard-rank {
+    font-weight: bold;
+    color: #ffd700;
+    margin-right: 8px;
+    min-width: 35px;
+}
+
+.player-name {
+    color: #fff;
+    font-weight: bold;
+}
+
+.score-details {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.score-value {
+    color: #ffd700;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.distance-value {
+    color: #88ccff;
+    font-size: 0.9em;
+}
+
+.efficiency-value {
+    color: #88ff88;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.date-value {
+    color: #aaa;
+    font-size: 0.8em;
+}
+
+#player-input {
+    margin-top: 30px;
+}
+
+#player-name {
+    padding: 12px 20px;
+    font-size: 1.1em;
+    border: 2px solid #667eea;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+#player-name::placeholder {
+    color: #aaa;
+}
+
+#player-name:focus {
+    outline: none;
+    border-color: #ffd700;
+}
+
+#level-select {
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+#level-select label {
+    font-size: 1.1em;
+    color: #ffd700;
+}
+
+#start-level {
+    padding: 10px 20px;
+    font-size: 1.1em;
+    border: 2px solid #667eea;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    cursor: pointer;
+}
+
+#start-level:focus {
+    outline: none;
+    border-color: #ffd700;
+}
+
+#start-level option {
+    background: #1a1a2e;
+    color: #fff;
+}
+
+button {
+    padding: 12px 30px;
+    font-size: 1.1em;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin: 5px;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+#game-info {
+    display: flex;
+    justify-content: space-around;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+#game-info div {
+    margin: 5px;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+#game-info span {
+    color: #ffd700;
+}
+
+#game-canvas {
+    display: block;
+    margin: 0 auto;
+    border: 3px solid #ffd700;
+    border-radius: 10px;
+    background: #1a1a2e;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+}
+
+#game-instructions {
+    margin-top: 15px;
+    font-size: 0.9em;
+    color: #ccc;
+}
+
+/* 스펠링 표시 */
+#spelling-display {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.85);
+    padding: 25px 50px;
+    border-radius: 15px;
+    border: 3px solid #ffd700;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+    z-index: 1000;
+    animation: spellingPop 0.3s ease-out;
+}
+
+#spelling-display.hidden {
+    display: none;
+}
+
+#spelling-text {
+    font-size: 3em;
+    font-weight: bold;
+    color: #ffd700;
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+
+@keyframes spellingPop {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes spellingFade {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0;
+    }
+}
+
+/* 게임오버 오버레이 스타일 */
+#game-over-screen.overlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.9);
+    border: 3px solid #ff4444;
+    box-shadow: 0 0 30px rgba(255, 68, 68, 0.5);
+}
+
+#level-complete-screen h2,
+#game-over-screen h2,
+#game-complete-screen h2 {
+    color: #ffd700;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+#level-complete-screen p,
+#game-over-screen p,
+#game-complete-screen p {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+#final-score,
+#complete-final-score {
+    color: #ffd700;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+#final-distance,
+#complete-final-distance {
+    color: #88ccff;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+/* 스크롤바 스타일링 */
+#leaderboard::-webkit-scrollbar {
+    width: 8px;
+}
+
+#leaderboard::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+#leaderboard::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+#leaderboard::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
