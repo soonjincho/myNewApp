@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Bite by SOONJIN</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="game-container">
+        <div id="start-screen" class="screen">
+            <h1>Snake Bite</h1>
+            <p class="subtitle">by SOONJIN</p>
+            <div id="leaderboard">
+                <h2>순위표</h2>
+                <div id="leaderboard-list"></div>
+            </div>
+            <div id="player-input">
+                <input type="text" id="player-name" placeholder="플레이어 이름을 입력하세요" maxlength="20">
+                <div id="level-select">
+                    <label for="start-level">시작 레벨: </label>
+                    <select id="start-level">
+                        <option value="1">레벨 1</option>
+                        <option value="2">레벨 2</option>
+                        <option value="3">레벨 3</option>
+                        <option value="4">레벨 4</option>
+                        <option value="5">레벨 5</option>
+                        <option value="6">레벨 6</option>
+                        <option value="7">레벨 7</option>
+                        <option value="8">레벨 8</option>
+                        <option value="9">레벨 9</option>
+                        <option value="10">레벨 10</option>
+                    </select>
+                </div>
+                <button id="start-button">게임 시작</button>
+            </div>
+        </div>
+
+        <div id="game-screen" class="screen hidden">
+            <div id="game-info">
+                <div>플레이어: <span id="current-player"></span></div>
+                <div>레벨: <span id="current-level">1</span> / 10</div>
+                <div>점수: <span id="current-score">0</span></div>
+                <div>이동: <span id="current-distance">0</span></div>
+                <div>먹이: <span id="foods-eaten">0</span></div>
+            </div>
+            <canvas id="game-canvas"></canvas>
+            <div id="spelling-display" class="hidden">
+                <span id="spelling-text"></span>
+            </div>
+            <div id="game-instructions">
+                <p>방향키로 뱀을 조작하세요. 먹이를 먹고 Exit으로 나가세요!</p>
+                <p>Space 또는 P: 일시정지/재개</p>
+            </div>
+        </div>
+
+        <div id="level-complete-screen" class="screen hidden">
+            <h2>🎉 레벨 <span id="completed-level">1</span> 완료!</h2>
+            <p>축하합니다! 다음 레벨로 진행합니다.</p>
+            <p>다음 레벨: <span id="next-level-num">2</span> / 10</p>
+            <button id="next-level-button">다음 레벨 시작</button>
+        </div>
+
+        <div id="game-over-screen" class="screen hidden">
+            <h2>게임 오버</h2>
+            <p>최종 점수: <span id="final-score">0</span></p>
+            <p>이동 거리: <span id="final-distance">0</span></p>
+            <button id="restart-button">다시 시작</button>
+            <button id="back-to-menu-button">메뉴로 돌아가기</button>
+        </div>
+
+        <div id="game-complete-screen" class="screen hidden">
+            <h2>🎉 축하합니다!</h2>
+            <p>모든 레벨을 완료했습니다!</p>
+            <p>최종 점수: <span id="complete-final-score">0</span></p>
+            <p>총 이동 거리: <span id="complete-final-distance">0</span></p>
+            <button id="complete-restart-button">다시 시작</button>
+            <button id="complete-menu-button">메뉴로 돌아가기</button>
+        </div>
+    </div>
+
+    <script src="js/levels.js"></script>
+    <script src="js/score.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/bgmusic.js"></script>
+    <script src="js/food.js"></script>
+    <script src="js/maze.js"></script>
+    <script src="js/snake.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
+
